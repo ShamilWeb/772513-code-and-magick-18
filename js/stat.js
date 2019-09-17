@@ -16,12 +16,12 @@ var TEXT_X = 120;
 var TEXT_VICTORY_Y = 42;
 var TEXT2_RESULT_Y = 60;
 
-var renderCloud = function(ctx, x, y, color) {
+var renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 };
 
-var getMaxElement = function(arr) {
+var getMaxElement = function (arr) {
   var maxElement = arr[0];
 
   for (var i = 0; i < arr.length; i++) {
@@ -31,13 +31,13 @@ var getMaxElement = function(arr) {
   return maxElement;
 };
 
-var randomColor = function() {
+var randomColor = function () {
   var randomNumber = Math.round(Math.random() * 100);
   var color = 'hsl(240,100%,' + randomNumber + '%)';
   return color;
 };
 
-window.renderStatistics = function(ctx, names, times) {
+window.renderStatistics = function (ctx, names, times) {
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.7)'); // Рисует белое облако
   renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff'); // Рисует тень облако
 
