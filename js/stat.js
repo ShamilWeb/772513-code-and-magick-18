@@ -27,6 +27,11 @@ var getMaxElement = function(arr) {
   return maxElement;
 };
 
+var randomColor = function() {
+var randomNumber = Math.round(Math.random() * 100);
+var color = 'hsl(240,100%,' + randomNumber + '%)';
+return color;
+};
 
 window.renderStatistics = function (ctx, names, times) {
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.7)'); // Рисует белое облако
@@ -41,11 +46,9 @@ window.renderStatistics = function (ctx, names, times) {
   var interval = 0;
 
   for (var i = 0; i < names.length; i++) {
-    var randomNumber = Math.round(Math.random() * 100);
-    ctx.fillStyle = names[i] === 'Вы' ? 'rgba(255, 0, 0, 1)' : 'hsl(240,100%,' + randomNumber + '%)';
+    ctx.fillStyle = names[i] === 'Вы' ? 'rgba(255, 0, 0, 1)' : randomColor();
     ctx.fillRect(BAR_X + interval, BAR_Y, BAR_WIDTH, -(MAX_BAR_HEIGHT * times[i]) / maxTime);
     ctx.fillStyle = '#000';
-
     ctx.fillText(Math.round(times[i]), BAR_X + interval, MAX_TINE_Y - ((MAX_BAR_HEIGHT * times[i]) / maxTime));
     ctx.fillText(names[i], BAR_X + interval, NAME_Y);
     interval += 90;
