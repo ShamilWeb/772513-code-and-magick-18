@@ -11,6 +11,10 @@ var BAR_WIDTH = 40;
 var MAX_BAR_HEIGHT = 150;
 var NAME_Y = 260;
 var MAX_TINE_Y = 230;
+var INTERVAL_TERM = 92;
+var TEXT_X = 120;
+var TEXT_VICTORY_Y = 42;
+var TEXT2_RESULT_Y = 60;
 
 var renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
@@ -39,8 +43,8 @@ window.renderStatistics = function (ctx, names, times) {
 
   ctx.fillStyle = '#000';
   ctx.font = '16px PT Mono';
-  ctx.fillText('Ура вы победили!', 120, 42);
-  ctx.fillText('Список результатов:', 120, 60);
+  ctx.fillText('Ура вы победили!', TEXT_X, TEXT_VICTORY_Y);
+  ctx.fillText('Список результатов:', TEXT_X, TEXT2_RESULT_Y);
 
   var maxTime = getMaxElement(times);
   var interval = 0;
@@ -51,7 +55,7 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.fillStyle = '#000';
     ctx.fillText(Math.round(times[i]), BAR_X + interval, MAX_TINE_Y - ((MAX_BAR_HEIGHT * times[i]) / maxTime));
     ctx.fillText(names[i], BAR_X + interval, NAME_Y);
-    interval += 90;
+    interval += INTERVAL_TERM;
   }
 
 };
