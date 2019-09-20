@@ -60,14 +60,11 @@ var getRandomNumber = function (min, max)  {
 // ----Создает Стрктуру данных
 var createsWizard = function () {
   for (var i = 1; i <= 4; i++) {
-    var wizard = {name: ''};
-    for (var j = 0; j < 4; j++) {
-      if (parameter[j] === 'name') {
-        wizard[parameter[j]] += ' ' + values[j][getRandomNumber(0, values[j].length - 1)];
-      } else {
-        wizard[parameter[j]] = values[j][getRandomNumber(0, values[j].length - 1)];
-      }
-    }
+    var wizard = {};
+        wizard.name = WIZARD_NAMES[getRandomNumber(0, WIZARD_NAMES.length - 1)];
+        wizard.name += ' ' + WIZARD_SURNAMES[getRandomNumber(0, WIZARD_SURNAMES.length - 1)];
+        wizard.coatColor = MANTLE_COLOR[getRandomNumber(0, MANTLE_COLOR.length - 1)];
+        wizard.eyesColor = EYE_COLOR[getRandomNumber(0, EYE_COLOR.length - 1)];
     wizards.push(wizard);
   }
   return wizards;
