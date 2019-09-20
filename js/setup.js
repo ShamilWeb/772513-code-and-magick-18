@@ -47,8 +47,6 @@ var EYE_COLOR = [
   'green',
 ];
 
-var wizards = [];
-
 // ------Возвращает случайное число
 var getRandomNumber = function (min, max) {
   return Math.round(min - 0.5 + Math.random() * (max - min + 1));
@@ -56,7 +54,8 @@ var getRandomNumber = function (min, max) {
 // //////////////////////////////////////////////////////
 
 // ----Создает Стрктуру данных
-var createsWizard = function () {
+var createsWizards = function () {
+  var wizards = [];
   for (var i = 1; i <= 4; i++) {
     var wizard = {};
     wizard.name = WIZARD_NAMES[getRandomNumber(0, WIZARD_NAMES.length - 1)];
@@ -69,7 +68,7 @@ var createsWizard = function () {
 };
 // //////////////////////////////////////////////////////////
 
-wizards = createsWizard();
+var wizards = createsWizards();
 
 // ----------Вставляет данные в шаблон
 var renderWizard = function (wizard) {
@@ -82,7 +81,7 @@ var renderWizard = function (wizard) {
 // ///////////////////////////////////////////////////////////////
 
 // --------------Вставляет готовый шаблон в разметку
-var outputWizard = function () {
+var outputWizards = function () {
   var fragment = document.createDocumentFragment();
   for (var i = 0; i < wizards.length; i++) {
     fragment.appendChild(renderWizard(wizards[i]));
@@ -91,4 +90,4 @@ var outputWizard = function () {
 };
 // //////////////////////////////////////////////////////
 
-outputWizard();
+outputWizards();
