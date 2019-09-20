@@ -3,7 +3,7 @@
 var setup = document.querySelector('.setup');
 setup.classList.remove('hidden');
 
-var similarListElement = document.querySelector('.setup-similar-list');
+var similarListElement = setup.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 
 var WIZARD_NAMES = [
@@ -52,8 +52,8 @@ var values = [WIZARD_NAMES, WIZARD_SURNAMES, MANTLE_COLOR, EYE_COLOR];
 var wizards = [];
 
 // ------Возвращает случайное число
-var getRandomNumber = function (arry) {
-  return Math.round(0 - 0.5 + Math.random() * ((arry.length - 1) - 0 + 1));
+var getRandomNumber = function (min, max)  {
+  return Math.round(min - 0.5 + Math.random() * (max - min + 1));
 };
 // //////////////////////////////////////////////////////
 
@@ -63,9 +63,9 @@ var createsWizard = function () {
     var wizard = {name: ''};
     for (var j = 0; j < 4; j++) {
       if (parameter[j] === 'name') {
-        wizard[parameter[j]] += ' ' + values[j][getRandomNumber(values[j])];
+        wizard[parameter[j]] += ' ' + values[j][getRandomNumber(0, values[j].length - 1)];
       } else {
-        wizard[parameter[j]] = values[j][getRandomNumber(values[j])];
+        wizard[parameter[j]] = values[j][getRandomNumber(0, values[j].length - 1)];
       }
     }
     wizards.push(wizard);
