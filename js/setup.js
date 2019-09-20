@@ -5,6 +5,8 @@ setup.classList.remove('hidden');
 
 var similarListElement = setup.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
+var setupSimilar = document.querySelector('.setup-similar');
+setupSimilar.classList.remove('hidden');
 
 var WIZARD_NAMES = [
   'Иван',
@@ -94,5 +96,3 @@ var outputWizard = function () {
 // //////////////////////////////////////////////////////
 
 outputWizard();
-var setupSimilar = document.querySelector('.setup-similar');
-setupSimilar.classList.remove('hidden');
