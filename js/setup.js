@@ -47,14 +47,10 @@ var EYE_COLOR = [
   'green',
 ];
 
-var parameter = ['name', 'name', 'coatColor', 'eyesColor'];
-
-var values = [WIZARD_NAMES, WIZARD_SURNAMES, MANTLE_COLOR, EYE_COLOR];
-
 var wizards = [];
 
 // ------Возвращает случайное число
-var getRandomNumber = function (min, max)  {
+var getRandomNumber = function (min, max) {
   return Math.round(min - 0.5 + Math.random() * (max - min + 1));
 };
 // //////////////////////////////////////////////////////
@@ -63,10 +59,10 @@ var getRandomNumber = function (min, max)  {
 var createsWizard = function () {
   for (var i = 1; i <= 4; i++) {
     var wizard = {};
-        wizard.name = WIZARD_NAMES[getRandomNumber(0, WIZARD_NAMES.length - 1)];
-        wizard.name += ' ' + WIZARD_SURNAMES[getRandomNumber(0, WIZARD_SURNAMES.length - 1)];
-        wizard.coatColor = MANTLE_COLOR[getRandomNumber(0, MANTLE_COLOR.length - 1)];
-        wizard.eyesColor = EYE_COLOR[getRandomNumber(0, EYE_COLOR.length - 1)];
+    wizard.name = WIZARD_NAMES[getRandomNumber(0, WIZARD_NAMES.length - 1)];
+    wizard.name += ' ' + WIZARD_SURNAMES[getRandomNumber(0, WIZARD_SURNAMES.length - 1)];
+    wizard.coatColor = MANTLE_COLOR[getRandomNumber(0, MANTLE_COLOR.length - 1)];
+    wizard.eyesColor = EYE_COLOR[getRandomNumber(0, EYE_COLOR.length - 1)];
     wizards.push(wizard);
   }
   return wizards;
