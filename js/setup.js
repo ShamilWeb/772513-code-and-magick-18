@@ -14,8 +14,9 @@ var setupSimilar = document.querySelector('.setup-similar');
 setupSimilar.classList.remove('hidden');
 var wizardEyes = document.querySelector('.wizard-eyes');
 var setupWizard = document.querySelector('.setup-wizard');
+var wizardCoat = document.querySelector('.wizard-coat');
 
-
+console.dir(wizardCoat);
 var WIZARD_NAMES = [
   'Иван',
   'Хуан Себастьян',
@@ -97,7 +98,6 @@ var outputWizards = function () {
   for (var i = 0; i < wizards.length; i++) {
     fragment.appendChild(renderWizard(wizards[i]));
   }
-console.dir(fragment, 1);
   similarListElement.appendChild(fragment);
 };
 // //////////////////////////////////////////////////////
@@ -147,8 +147,9 @@ setupUserName.addEventListener('keydown', function (evt) {
 });
 /////////////////////////////////////////////////////////////////////////////////////
 
-// -----Меняет цвет глаз по клику-------
+// -----Меняет цвет глаза и мантии по клику-------
 setupWizard.addEventListener('click', function() {
-  wizardEyes.style.fill = EYE_COLOR[getRandomNumber(0, 4)];
+  wizardEyes.style.fill = EYE_COLOR[getRandomNumber(0, EYE_COLOR.length - 1)];
+  wizardCoat.style.fill = MANTLE_COLOR[getRandomNumber(0, MANTLE_COLOR.length - 1)];
 });
 // //////////////////////////////////////////
