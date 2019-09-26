@@ -15,8 +15,8 @@ setupSimilar.classList.remove('hidden');
 var wizardEyes = document.querySelector('.wizard-eyes');
 var setupWizard = document.querySelector('.setup-wizard');
 var wizardCoat = document.querySelector('.wizard-coat');
+var setupFireballWrap = document.querySelector('.setup-fireball-wrap');
 
-console.dir(wizardCoat);
 var WIZARD_NAMES = [
   'Иван',
   'Хуан Себастьян',
@@ -55,6 +55,14 @@ var EYE_COLOR = [
   'yellow',
   'green',
 ];
+
+var FIREBALL_COLOR = [
+  '#ee4830',
+  '#30a8ee',
+  '#5ce6c0',
+  '#e848d5',
+  '#e6e848'
+]
 
 var ESC_KEYCODE = 27;
 var ENTER_KEYCODE = 13;
@@ -153,3 +161,7 @@ setupWizard.addEventListener('click', function() {
   wizardCoat.style.fill = MANTLE_COLOR[getRandomNumber(0, MANTLE_COLOR.length - 1)];
 });
 // //////////////////////////////////////////
+
+setupFireballWrap.addEventListener('click', function() {
+  setupFireballWrap.style.backgroundColor = FIREBALL_COLOR[getRandomNumber(0, FIREBALL_COLOR.length - 1)];
+});
