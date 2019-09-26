@@ -6,11 +6,7 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template').c
 var setupSimilar = document.querySelector('.setup-similar');
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = setup.querySelector('.setup-close');
-var setupOpenIcon = document.querySelector('.setup-open-icon');
 var setupUserName = setup.querySelector('.setup-user-name');
-var similarListElement = setup.querySelector('.setup-similar-list');
-var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
-var setupSimilar = document.querySelector('.setup-similar');
 setupSimilar.classList.remove('hidden');
 var wizardEyes = document.querySelector('.wizard-eyes');
 var setupWizard = document.querySelector('.setup-wizard');
@@ -62,7 +58,7 @@ var FIREBALL_COLOR = [
   '#5ce6c0',
   '#e848d5',
   '#e6e848'
-]
+];
 
 var ESC_KEYCODE = 27;
 var ENTER_KEYCODE = 13;
@@ -113,39 +109,39 @@ var outputWizards = function () {
 outputWizards();
 
 
-var onPopupEscPress = function(evt) {
+var onPopupEscPress = function (evt) {
   if (evt.keyCode === ESC_KEYCODE) {
     closePopup();
   }
 };
 
-var openPopup = function() {
+var openPopup = function () {
   setup.classList.remove('hidden');
   document.addEventListener('keydown', onPopupEscPress);
 };
 
-var closePopup = function() {
+var closePopup = function () {
   setup.classList.add('hidden');
   document.removeEventListener('keydown', onPopupEscPress);
 };
 
-setupOpen.addEventListener('click', function() {
+setupOpen.addEventListener('click', function () {
   openPopup();
 });
 
-setupOpen.addEventListener('keydown', function(evt) {
+setupOpen.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
     openPopup();
   }
 });
 
-setupClose.addEventListener('keydown', function(evt) {
+setupClose.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
     closePopup();
   }
 });
 
-setupClose.addEventListener('click', function() {
+setupClose.addEventListener('click', function () {
   closePopup();
 });
 
@@ -153,15 +149,15 @@ setupClose.addEventListener('click', function() {
 setupUserName.addEventListener('keydown', function (evt) {
   evt.stopPropagation();
 });
-/////////////////////////////////////////////////////////////////////////////////////
+// ///////////////////////////////////////////////////////////////////////////////////
 
 // -----Меняет цвет глаза и мантии по клику-------
-setupWizard.addEventListener('click', function() {
+setupWizard.addEventListener('click', function () {
   wizardEyes.style.fill = EYE_COLOR[getRandomNumber(0, EYE_COLOR.length - 1)];
   wizardCoat.style.fill = MANTLE_COLOR[getRandomNumber(0, MANTLE_COLOR.length - 1)];
 });
 // //////////////////////////////////////////
 
-setupFireballWrap.addEventListener('click', function() {
+setupFireballWrap.addEventListener('click', function () {
   setupFireballWrap.style.backgroundColor = FIREBALL_COLOR[getRandomNumber(0, FIREBALL_COLOR.length - 1)];
 });
