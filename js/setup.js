@@ -8,12 +8,13 @@ var setupOpen = document.querySelector('.setup-open');
 var setupClose = setup.querySelector('.setup-close');
 var setupOpenIcon = document.querySelector('.setup-open-icon');
 var setupUserName = setup.querySelector('.setup-user-name');
+var similarListElement = setup.querySelector('.setup-similar-list');
+var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
+var setupSimilar = document.querySelector('.setup-similar');
+setupSimilar.classList.remove('hidden');
 var wizardEyes = document.querySelector('.wizard-eyes');
 var setupWizard = document.querySelector('.setup-wizard');
-setup.classList.remove('hidden');
 
-var ESC_KEYCODE = 27;
-var ENTER_KEYCODE = 13;
 
 var WIZARD_NAMES = [
   'Иван',
@@ -53,6 +54,9 @@ var EYE_COLOR = [
   'yellow',
   'green',
 ];
+
+var ESC_KEYCODE = 27;
+var ENTER_KEYCODE = 13;
 
 // ------Возвращает случайное число
 var getRandomNumber = function (min, max) {
@@ -100,46 +104,51 @@ console.dir(fragment, 1);
 
 outputWizards();
 
-// var onPopupEscPress = function(evt) {
-//   if (evt.keyCode === ESC_KEYCODE) {
-//     closePopup();
-//   }
-// };
-//
-// var openPopup = function() {
-//   setup.classList.remove('hidden');
-//   document.addEventListener('keydown', onPopupEscPress);
-// };
-//
-// var closePopup = function() {
-//   setup.classList.add('hidden');
-//   document.removeEventListener('keydown', onPopupEscPress);
-// };
-//
-// setupOpen.addEventListener('click', function() {
-//   openPopup();
-// });
-//
-// setupOpen.addEventListener('keydown', function(evt) {
-//   if (evt.keyCode === ENTER_KEYCODE) {
-//     openPopup();
-//   }
-// });
-//
-// setupClose.addEventListener('keydown', function(evt) {
-//   if (evt.keyCode === ENTER_KEYCODE) {
-//     closePopup();
-//   }
-// });
-//
-// setupClose.addEventListener('click', function() {
-//   closePopup();
-// });
-//
-// setupUserName.addEventListener('keydown', function (evt) {
-//   evt.stopPropagation();
-// });
-//
-// setupWizard.addEventListener('click', function() {
-//   wizardEyes.style.fill = EYE_COLOR[getRandomNumber(0, 4)];
-// });
+
+var onPopupEscPress = function(evt) {
+  if (evt.keyCode === ESC_KEYCODE) {
+    closePopup();
+  }
+};
+
+var openPopup = function() {
+  setup.classList.remove('hidden');
+  document.addEventListener('keydown', onPopupEscPress);
+};
+
+var closePopup = function() {
+  setup.classList.add('hidden');
+  document.removeEventListener('keydown', onPopupEscPress);
+};
+
+setupOpen.addEventListener('click', function() {
+  openPopup();
+});
+
+setupOpen.addEventListener('keydown', function(evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    openPopup();
+  }
+});
+
+setupClose.addEventListener('keydown', function(evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    closePopup();
+  }
+});
+
+setupClose.addEventListener('click', function() {
+  closePopup();
+});
+
+// ----Не позволяет распространиться событию, когда фокус находится на инпуте для вота имени---
+setupUserName.addEventListener('keydown', function (evt) {
+  evt.stopPropagation();
+});
+/////////////////////////////////////////////////////////////////////////////////////
+
+// -----Меняет цвет глаз по клику-------
+setupWizard.addEventListener('click', function() {
+  wizardEyes.style.fill = EYE_COLOR[getRandomNumber(0, 4)];
+});
+// //////////////////////////////////////////
