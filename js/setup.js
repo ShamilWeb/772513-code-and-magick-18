@@ -12,6 +12,7 @@ var wizardEyes = document.querySelector('.wizard-eyes');
 var setupWizard = document.querySelector('.setup-wizard');
 var wizardCoat = document.querySelector('.wizard-coat');
 var setupFireballWrap = document.querySelector('.setup-fireball-wrap');
+var inputHidden = document.querySelectorAll('input[type="hidden"]');
 
 var WIZARD_NAMES = [
   'Иван',
@@ -153,11 +154,19 @@ setupUserName.addEventListener('keydown', function (evt) {
 
 // -----Меняет цвет глаза и мантии по клику-------
 setupWizard.addEventListener('click', function () {
-  wizardEyes.style.fill = EYE_COLOR[getRandomNumber(0, EYE_COLOR.length - 1)];
-  wizardCoat.style.fill = MANTLE_COLOR[getRandomNumber(0, MANTLE_COLOR.length - 1)];
+  var eseColor = EYE_COLOR[getRandomNumber(0, EYE_COLOR.length - 1)];
+  var mantleColor = MANTLE_COLOR[getRandomNumber(0, MANTLE_COLOR.length - 1)];
+  wizardEyes.style.fill = eseColor;
+  wizardCoat.style.fill = mantleColor;
+  inputHidden[0].value = mantleColor;
+  inputHidden[1].value = eseColor;
 });
 // //////////////////////////////////////////
 
+// ------Меняет цвет файрбола----------------------------------
 setupFireballWrap.addEventListener('click', function () {
-  setupFireballWrap.style.backgroundColor = FIREBALL_COLOR[getRandomNumber(0, FIREBALL_COLOR.length - 1)];
+  var fireballColor = FIREBALL_COLOR[getRandomNumber(0, FIREBALL_COLOR.length - 1)];
+  setupFireballWrap.style.backgroundColor = fireballColor;
+  inputHidden[2].value = fireballColor;
 });
+// ////////////////////////////////////////////////////////////////////////////
