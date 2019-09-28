@@ -1,12 +1,19 @@
 'use strict';
 
 var setup = document.querySelector('.setup');
-setup.classList.remove('hidden');
-
 var similarListElement = setup.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 var setupSimilar = document.querySelector('.setup-similar');
+var setupOpen = document.querySelector('.setup-open');
+var setupClose = setup.querySelector('.setup-close');
+var setupUserName = setup.querySelector('.setup-user-name');
 setupSimilar.classList.remove('hidden');
+var wizardEyes = document.querySelector('.wizard-eyes');
+var wizardCoat = document.querySelector('.wizard-coat');
+var setupFireballWrap = document.querySelector('.setup-fireball-wrap');
+var inputCoatColor = document.querySelectorAll('[name=coat-color]');
+var inputEyesColor = document.querySelectorAll('[name=eyes-color]');
+var inputFireballColor = document.querySelectorAll('[name=fireball-color]');
 
 var WIZARD_NAMES = [
   'Иван',
@@ -46,6 +53,17 @@ var EYE_COLOR = [
   'yellow',
   'green',
 ];
+
+var FIREBALL_COLOR = [
+  '#ee4830',
+  '#30a8ee',
+  '#5ce6c0',
+  '#e848d5',
+  '#e6e848'
+];
+
+var ESC_KEYCODE = 27;
+var ENTER_KEYCODE = 13;
 
 // ------Возвращает случайное число
 var getRandomNumber = function (min, max) {
@@ -91,3 +109,69 @@ var outputWizards = function () {
 // //////////////////////////////////////////////////////
 
 outputWizards();
+
+var onPopupEscPress = function (evt) {
+  if (evt.keyCode === ESC_KEYCODE) {
+    closePopup();
+  }
+};
+
+var onPopupEnterPress = function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    closePopup();
+  }
+};
+
+var onPopupOpenEnterPress = function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    openPopup();
+  }
+};
+
+var openPopup = function () {
+  setup.classList.remove('hidden');
+  document.addEventListener('keydown', onPopupEscPress);
+  setupClose.addEventListener('click', closePopup);
+  setupClose.addEventListener('keydown', onPopupEnterPress);
+};
+
+var closePopup = function () {
+  setup.classList.add('hidden');
+  document.removeEventListener('keydown', onPopupEscPress);
+  setupClose.removeEventListener('click', closePopup);
+  setupClose.removeEventListener('keydown', onPopupEnterPress);
+};
+
+setupOpen.addEventListener('click', openPopup);
+
+setupOpen.addEventListener('keydown', onPopupOpenEnterPress);
+
+// ----Не позволяет распространиться событию, когда фокус находится на инпуте для вота имени---
+setupUserName.addEventListener('keydown', function (evt) {
+  evt.stopPropagation();
+});
+// ///////////////////////////////////////////////////////////////////////////////////
+
+// -----Меняет цвет глаза по клику в области глаз-------
+wizardEyes.addEventListener('click', function () {
+  var eseColor = EYE_COLOR[getRandomNumber(0, EYE_COLOR.length - 1)];
+  wizardEyes.style.fill = eseColor;
+  inputEyesColor.value = eseColor;
+});
+// //////////////////////////////////////////
+
+// -----Меняет цвет мантии по клику в области мантии-------
+wizardCoat.addEventListener('click', function () {
+  var mantleColor = MANTLE_COLOR[getRandomNumber(0, MANTLE_COLOR.length - 1)];
+  wizardCoat.style.fill = mantleColor;
+  inputCoatColor.value = mantleColor;
+});
+// //////////////////////////////////////////
+
+// ------Меняет цвет файрбола----------------------------------
+setupFireballWrap.addEventListener('click', function () {
+  var fireballColor = FIREBALL_COLOR[getRandomNumber(0, FIREBALL_COLOR.length - 1)];
+  setupFireballWrap.style.backgroundColor = fireballColor;
+  inputFireballColor.value = fireballColor;
+});
+// ////////////////////////////////////////////////////////////////////////////
