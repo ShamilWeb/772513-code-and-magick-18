@@ -9,7 +9,6 @@ var setupClose = setup.querySelector('.setup-close');
 var setupUserName = setup.querySelector('.setup-user-name');
 setupSimilar.classList.remove('hidden');
 var wizardEyes = document.querySelector('.wizard-eyes');
-var setupWizard = document.querySelector('.setup-wizard');
 var wizardCoat = document.querySelector('.wizard-coat');
 var setupFireballWrap = document.querySelector('.setup-fireball-wrap');
 var inputCoatColor = document.querySelectorAll('[name=coat-color]');
