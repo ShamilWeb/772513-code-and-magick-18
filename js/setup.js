@@ -12,7 +12,9 @@ var wizardEyes = document.querySelector('.wizard-eyes');
 var setupWizard = document.querySelector('.setup-wizard');
 var wizardCoat = document.querySelector('.wizard-coat');
 var setupFireballWrap = document.querySelector('.setup-fireball-wrap');
-var inputHidden = document.querySelectorAll('input[type="hidden"]');
+var inputCoatColor = document.querySelectorAll('[name=coat-color]');
+var inputEyesColor = document.querySelectorAll('[name=eyes-color]');
+var inputFireballColor = document.querySelectorAll('[name=fireball-color]');
 
 var WIZARD_NAMES = [
   'Иван',
@@ -109,42 +111,41 @@ var outputWizards = function () {
 
 outputWizards();
 
-
 var onPopupEscPress = function (evt) {
   if (evt.keyCode === ESC_KEYCODE) {
     closePopup();
   }
 };
 
+var onPopupEnterPress = function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    closePopup();
+  }
+};
+
+var onPopupOpenEnterPress = function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    openPopup();
+  }
+};
+
 var openPopup = function () {
   setup.classList.remove('hidden');
   document.addEventListener('keydown', onPopupEscPress);
+  setupClose.addEventListener('click', closePopup);
+  setupClose.addEventListener('keydown', onPopupEnterPress);
 };
 
 var closePopup = function () {
   setup.classList.add('hidden');
   document.removeEventListener('keydown', onPopupEscPress);
+  setupClose.removeEventListener('click', closePopup);
+  setupClose.removeEventListener('keydown', onPopupEnterPress);
 };
 
-setupOpen.addEventListener('click', function () {
-  openPopup();
-});
+setupOpen.addEventListener('click', openPopup);
 
-setupOpen.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === ENTER_KEYCODE) {
-    openPopup();
-  }
-});
-
-setupClose.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === ENTER_KEYCODE) {
-    closePopup();
-  }
-});
-
-setupClose.addEventListener('click', function () {
-  closePopup();
-});
+setupOpen.addEventListener('keydown', onPopupOpenEnterPress);
 
 // ----Не позволяет распространиться событию, когда фокус находится на инпуте для вота имени---
 setupUserName.addEventListener('keydown', function (evt) {
@@ -152,14 +153,19 @@ setupUserName.addEventListener('keydown', function (evt) {
 });
 // ///////////////////////////////////////////////////////////////////////////////////
 
-// -----Меняет цвет глаза и мантии по клику-------
-setupWizard.addEventListener('click', function () {
+// -----Меняет цвет глаза по клику в области глаз-------
+wizardEyes.addEventListener('click', function () {
   var eseColor = EYE_COLOR[getRandomNumber(0, EYE_COLOR.length - 1)];
-  var mantleColor = MANTLE_COLOR[getRandomNumber(0, MANTLE_COLOR.length - 1)];
   wizardEyes.style.fill = eseColor;
+  inputEyesColor.value = eseColor;
+});
+// //////////////////////////////////////////
+
+// -----Меняет цвет мантии по клику в области мантии-------
+wizardCoat.addEventListener('click', function () {
+  var mantleColor = MANTLE_COLOR[getRandomNumber(0, MANTLE_COLOR.length - 1)];
   wizardCoat.style.fill = mantleColor;
-  inputHidden[0].value = mantleColor;
-  inputHidden[1].value = eseColor;
+  inputCoatColor.value = mantleColor;
 });
 // //////////////////////////////////////////
 
@@ -167,6 +173,6 @@ setupWizard.addEventListener('click', function () {
 setupFireballWrap.addEventListener('click', function () {
   var fireballColor = FIREBALL_COLOR[getRandomNumber(0, FIREBALL_COLOR.length - 1)];
   setupFireballWrap.style.backgroundColor = fireballColor;
-  inputHidden[2].value = fireballColor;
+  inputFireballColor.value = fireballColor;
 });
 // ////////////////////////////////////////////////////////////////////////////
