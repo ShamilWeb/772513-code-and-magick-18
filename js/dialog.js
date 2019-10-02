@@ -99,8 +99,8 @@
 
       // ---Отменяет действия по умолчанию элемента "dialogHandler"
       if (dragged) {
-        var onClickPreventDefault = function (evt) {
-          evt.preventDefault();
+        var onClickPreventDefault = function (evtDefault) {
+          evtDefault.preventDefault();
           dialogHandler.removeEventListener('click', onClickPreventDefault);
         };
         dialogHandler.addEventListener('click', onClickPreventDefault);
