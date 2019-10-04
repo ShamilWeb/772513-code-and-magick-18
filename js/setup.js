@@ -42,27 +42,55 @@
   };
   // //////////////////////////////////////////////////////////
 
-  var wizards = createsWizards();
+
+  // var wizards = createsWizards();
+
+
+  // // ----------Вставляет данные в шаблон
+  // var renderWizard = function (wizard) {
+  //   var wizardElement = similarWizardTemplate.cloneNode(true);
+  //   wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
+  //   wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
+  //   wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
+  //   return wizardElement;
+  // };
+  // // ///////////////////////////////////////////////////////////////
 
   // ----------Вставляет данные в шаблон
   var renderWizard = function (wizard) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
     wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
-    wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
-    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
+    wizardElement.querySelector('.wizard-coat').style.fill = wizard.colorCoat;
+    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.colorEyes;
     return wizardElement;
   };
   // ///////////////////////////////////////////////////////////////
 
   // --------------Вставляет готовый шаблон в разметку
-  var outputWizards = function () {
+  var outputWizards = function (wizards) {
     var fragment = document.createDocumentFragment();
-    for (var i = 0; i < wizards.length; i++) {
+    for (var i = 0; i < 4; i++) {
       fragment.appendChild(renderWizard(wizards[i]));
     }
     similarListElement.appendChild(fragment);
   };
   // //////////////////////////////////////////////////////
 
-  outputWizards();
+  // --------Запрашивает похожих персонажей и в зависемости от ответа выполняет ту или иную функцию--------
+  window.backend.load(outputWizards,
+    function (xhrStatus) {
+    var error;
+    switch (xhrStatus) {
+      case 400:
+        return 'Неверный запрос';
+      case 401:
+        return 'Пользователь не авторизован';
+      case 404:
+        return 'Ничего не найдено';
+      default:
+        return 'Cтатус ответа: : ' + xhr.status;
+    }
+  })
+  // //////////////////////////////////////////////////////////////////////////////////////////////
+
 })();
