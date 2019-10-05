@@ -2,7 +2,7 @@
 
 (function () {
   var load = function (onLoad, onError) {
-    var url = 'https://js.dump.academy/code-and-magick/dat2a';
+    var url = 'https://js.dump.academy/code-and-magick/data';
     var xhr = new XMLHttpRequest();
 
     xhr.responseType = 'json';
@@ -27,10 +27,10 @@
 
     xhr.open('GET', url);
     xhr.send();
-  }
+  };
 
-  var save = function (data, onLoad, onError ) {
-    var URL = 'https://js.dump.academy/code-and-magick'
+  var save = function (data, onLoad, onError) {
+    var URL = 'https://js.dump.academy/code-and-magick';
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
 
