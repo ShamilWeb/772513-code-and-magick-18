@@ -26,6 +26,20 @@
     ],
     getRandomNumber: function (min, max) { // Возвращает случайное число
       return Math.round(min - 0.5 + Math.random() * (max - min + 1));
+    },
+
+    outputErrors: function (errorMessage) {
+      var div = document.createElement('div')
+      div.textContent = errorMessage;
+      div.style = "position: absolute; z-index: 10; background-color: red; width: 100%; height:50px; display: flex; justify-content: center; align-items: center;"
+      document.body.prepend(div);
+    },
+
+    removeSimilarWizard: function () {
+      var similarWizard = window.util.setup.querySelectorAll('.setup-similar-item');
+      for (var i=0; i < similarWizard.length; i++) {
+        similarWizard[i].remove();
+      }
     }
   };
 })();

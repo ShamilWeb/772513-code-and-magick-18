@@ -2,7 +2,7 @@
 
 (function () {
   var load = function (onLoad, onError) {
-    var url = 'https://js.dump.academy/code-and-magick/data';
+    var url = 'https://js.dump.academy/code-and-magick/dat2a';
     var xhr = new XMLHttpRequest();
 
     xhr.responseType = 'json';
@@ -11,9 +11,8 @@
       if (xhr.status === 200) {
         onLoad(xhr.response);
       } else {
-        console.log(onError(xhr.status));
+        onError('Cтатус ответа: ' + xhr.status + ' Не удалось загрузить похожих персонажей');
       }
-      return xhr.response;
     });
 
     xhr.addEventListener('error', function () {
@@ -30,7 +29,33 @@
     xhr.send();
   }
 
+  var save = function (data, onLoad, onError ) {
+    var URL = 'https://js.dump.academy/code-and-magick'
+    var xhr = new XMLHttpRequest();
+    xhr.responseType = 'json';
+
+    xhr.addEventListener('load', function () {
+      if (xhr.status === 200) {
+        onLoad(xhr.response);
+      } else {
+        onError('Cтатус ответа: ' + xhr.status + ' ' + xhr.statusText);
+      }
+    });
+
+    xhr.addEventListener('error', function () {
+      onError('Произошла ошибка соединения');
+    });
+
+    xhr.addEventListener('timeout', function () {
+      onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
+    });
+
+    xhr.open('POST', URL);
+    xhr.send(data);
+  };
+
   window.backend = {
-    load: load
+    load: load,
+    save: save
   };
 })();

@@ -31,6 +31,7 @@
     document.addEventListener('keydown', onPopupEscPress);
     setupClose.addEventListener('click', closePopup);
     setupClose.addEventListener('keydown', onPopupEnterPress);
+    window.backend.load(window.outputWizards, window.util.outputErrors);
   };
 
   var closePopup = function () {
@@ -40,6 +41,7 @@
     setupClose.removeEventListener('keydown', onPopupEnterPress);
     window.util.setup.style.top = START_DIALOG_TOP + 'PX';
     window.util.setup.style.left = START_DIALOG_LEFT + '%';
+    window.util.removeSimilarWizard();
   };
 
   setupOpen.addEventListener('click', openPopup);
@@ -113,5 +115,13 @@
     document.addEventListener('mouseup', onMouseUp);
   });
   // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  var form = window.util.setup.querySelector('.setup-wizard-form');
+  form.addEventListener('submit', function (evt) {
+    window.backend.save(new FormData(form), function (response) {
+      window.util.setup.classList.add('hidden');
+    }, window.util.outputErrors);
+    evt.preventDefault();
+  });
 
 })();
