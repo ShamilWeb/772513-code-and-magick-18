@@ -122,6 +122,7 @@
       window.util.setup.classList.add('hidden');
     }, window.util.outputErrors);
     evt.preventDefault();
+    window.util.removeSimilarWizard();
   });
 
 })();

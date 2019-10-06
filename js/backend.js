@@ -1,14 +1,18 @@
 'use strict';
 
 (function () {
+
+  var URL = 'https://js.dump.academy/code-and-magick';
+  var XHR_STATUS = 200;
+  var XHR_TIMEOUT = 10000;
+
   var load = function (onLoad, onError) {
-    var url = 'https://js.dump.academy/code-and-magick/data';
     var xhr = new XMLHttpRequest();
 
     xhr.responseType = 'json';
 
     xhr.addEventListener('load', function () {
-      if (xhr.status === 200) {
+      if (xhr.status === XHR_STATUS) {
         onLoad(xhr.response);
       } else {
         onError('Cтатус ответа: ' + xhr.status + ' Не удалось загрузить похожих персонажей');
@@ -23,19 +27,18 @@
       onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
     });
 
-    xhr.timeout = 10000; // 10s
+    xhr.timeout = XHR_TIMEOUT; // 10s
 
-    xhr.open('GET', url);
+    xhr.open('GET', URL + '/data');
     xhr.send();
   };
 
   var save = function (data, onLoad, onError) {
-    var URL = 'https://js.dump.academy/code-and-magick';
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
 
     xhr.addEventListener('load', function () {
-      if (xhr.status === 200) {
+      if (xhr.status === XHR_STATUS) {
         onLoad(xhr.response);
       } else {
         onError('Cтатус ответа: ' + xhr.status + ' ' + xhr.statusText);
@@ -49,6 +52,8 @@
     xhr.addEventListener('timeout', function () {
       onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
     });
+
+    xhr.timeout = XHR_TIMEOUT; // 10s
 
     xhr.open('POST', URL);
     xhr.send(data);
