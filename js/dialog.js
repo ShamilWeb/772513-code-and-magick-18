@@ -41,7 +41,6 @@
     setupClose.removeEventListener('keydown', onPopupEnterPress);
     window.util.setup.style.top = START_DIALOG_TOP + 'PX';
     window.util.setup.style.left = START_DIALOG_LEFT + '%';
-    window.util.removeSimilarWizard();
   };
 
   setupOpen.addEventListener('click', openPopup);
