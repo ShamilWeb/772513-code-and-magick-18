@@ -13,7 +13,7 @@
     }
 
     return rank;
-  }
+  };
 
   window.sorting = function (arry) {
     var sortArry = arry.slice().sort(function (right, left) {
@@ -22,7 +22,7 @@
     });
 
     return sortArry;
-  }
+  };
 
 
 })();

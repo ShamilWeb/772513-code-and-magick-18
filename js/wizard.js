@@ -12,22 +12,22 @@
   // -----Меняет цвет глаза по клику в области глаз-------
   var changesColorEye = function () {
     window.eyeColor = window.util.EYE_COLOR[window.util.getRandomNumber(0, window.util.EYE_COLOR.length - 1)];
-    wizardEyes.style.fill = eyeColor;
-    inputEyesColor.value = eyeColor;
-    window.debounce(function() {
+    wizardEyes.style.fill = window.eyeColor;
+    inputEyesColor.value = window.eyeColor;
+    window.debounce(function () {
       window.outputWizards(window.serverWizards);
-    })
+    });
   };
   // //////////////////////////////////////////
 
   // -----Меняет цвет мантии по клику в области мантии-------
   var changesColorMantle = function () {
     window.mantleColor = window.util.MANTLE_COLOR[window.util.getRandomNumber(0, window.util.MANTLE_COLOR.length - 1)];
-    wizardCoat.style.fill = mantleColor;
-    inputCoatColor.value = mantleColor;
-    window.debounce(function() {
+    wizardCoat.style.fill = window.mantleColor;
+    inputCoatColor.value = window.mantleColor;
+    window.debounce(function () {
       window.outputWizards(window.serverWizards);
-    })
+    });
   };
 
   // //////////////////////////////////////////
