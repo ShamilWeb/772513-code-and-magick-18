@@ -1,4 +1,5 @@
 'use strict';
+
 (function () {
   var similarListElement = window.util.setup.querySelector('.setup-similar-list');
   var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
@@ -17,10 +18,12 @@
 
   // --------------Вставляет готовый шаблон в разметку
   window.outputWizards = function (wizards) {
+    var sortWizards = window.sorting(wizards);
     var fragment = document.createDocumentFragment();
     for (var i = 0; i < 4; i++) {
-      fragment.appendChild(renderWizard(wizards[i]));
+      fragment.appendChild(renderWizard(sortWizards[i]));
     }
+    window.util.removeSimilarWizard();
     similarListElement.appendChild(fragment);
   };
   // //////////////////////////////////////////////////////

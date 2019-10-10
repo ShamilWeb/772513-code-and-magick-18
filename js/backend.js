@@ -13,6 +13,7 @@
 
     xhr.addEventListener('load', function () {
       if (xhr.status === XHR_STATUS) {
+        window.serverWizards = xhr.response;
         onLoad(xhr.response);
       } else {
         onError('Cтатус ответа: ' + xhr.status + ' Не удалось загрузить похожих персонажей');
