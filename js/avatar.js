@@ -5,17 +5,28 @@
   var fileChooser = document.querySelector('input[type=file]');
   var preview = document.querySelector('.setup-user-pic');
 
-  fileChooser.addEventListener('change', function () {
+  // -----------Проверяет загруженный файл изображение или нет----------------------------
+  var doesСheckImg = function (file) {
+    var fileName = file.name.toLowerCase();
 
-    var file = fileChooser.files[0];
-    var reader = new FileReader();
-
-    reader.addEventListener('load', function () {
-      console.log(reader.result);
-
-      preview.src = reader.result;
+    var matches = FILE_TYPES.some(function (it) {
+     return fileName.endsWith(it);
     });
+    return matches;
+  };
+  // ///////////////////////////////////////////////////////////////////////////////
 
-    reader.readAsDataURL(file);
-  })
+  fileChooser.addEventListener('change', function () {
+    var file = fileChooser.files[0];
+
+    if (doesСheckImg(file)) {
+      var reader = new FileReader();
+
+      reader.addEventListener('load', function () {
+        preview.src = reader.result;
+      });
+
+      reader.readAsDataURL(file);
+    }
+  });
 })();
